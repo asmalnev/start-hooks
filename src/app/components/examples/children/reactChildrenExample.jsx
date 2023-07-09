@@ -25,9 +25,7 @@ const FormComponent = ({ children }) => {
       value: data[child.props.name] || ""
     };
 
-    React.cloneElement(child, config);
-
-    return child;
+    return React.cloneElement(child, config);
   });
 };
 
