@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Wrapper = ({ children }) => {
   return React.Children.toArray(children).map((child, index) => {
-    return React.cloneElement(child, { key: index + 1 });
+    return React.cloneElement(child, { keyNumber: index + 1 });
   });
 };
 
@@ -27,13 +27,12 @@ const ChildrenExercise = () => {
   );
 };
 
-const Component = ({ key }) => {
-  console.log(key);
-  return <div>Компонент списка {key}</div>;
+const Component = ({ keyNumber }) => {
+  return <div>Компонент списка {keyNumber}</div>;
 };
 
 Component.propTypes = {
-  key: PropTypes.number
+  keyNumber: PropTypes.number
 };
 
 export default ChildrenExercise;
