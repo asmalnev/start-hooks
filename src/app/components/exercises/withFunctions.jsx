@@ -18,6 +18,7 @@ const withFunctions = (Component) => (props) => {
         onLogin={handleLogin}
         onLogOut={handleLogOut}
         isAuth={isAuth}
+        {...props}
       />
     </Card>
   );
