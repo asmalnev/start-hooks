@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
 import PropTypes from "prop-types";
+
 const CollapseWrapper = ({ children, title, name }) => {
   const [display, setDisaplay] = useState(false);
+
   const collapseRef = useRef();
+
   const toggleDisplay = () => {
     setDisaplay((prevState) => !prevState);
   };
+
   useEffect(() => {
     const newCollapse = new BsCollapse(collapseRef.current, {
       toggle: false
@@ -31,9 +35,11 @@ const CollapseWrapper = ({ children, title, name }) => {
     </div>
   );
 };
+
 CollapseWrapper.defaultProps = {
   title: "Информация"
 };
+
 CollapseWrapper.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
