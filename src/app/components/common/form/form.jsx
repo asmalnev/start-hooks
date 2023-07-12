@@ -11,6 +11,19 @@ const FormComponent = ({
   const [data, setData] = useState(defaultData || {});
   const [errors, setErrors] = useState({});
 
+  const handleKeyDown = useCallback((event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+
+      const form = event.target.form;
+
+      const indexField = Array.prototype.indexOf.call(form, event.target);
+
+      // переход к следующему полю по enter
+      form.elements[indexField + 1].focus();
+    }
+  }, []);
+
   const handleChange = useCallback(
     (target) => {
       setData((prevState) => ({
@@ -29,8 +42,6 @@ const FormComponent = ({
     if (!isValid) return;
 
     onSubmit(data);
-
-    console.log(data);
   };
 
   const isValid = Object.keys(errors).length === 0;
@@ -64,7 +75,8 @@ const FormComponent = ({
         ...child.props,
         onChange: handleChange,
         value: data[child.props.name] || "",
-        error: errors[child.props.name]
+        error: errors[child.props.name],
+        onKeyDown: handleKeyDown
       };
     }
 
